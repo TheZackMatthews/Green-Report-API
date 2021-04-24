@@ -2,12 +2,17 @@
 'use strict';
 //const express = require('express');
 const router = require('express').Router();
+const { sendUnconfirmedReports, saveNewReport } = require('./controllers/newReport');
 
-router.get('/', getRoot);
+// Verify if the user has admin permissions
+// router.post('/authorise', )
 
-function getRoot(req, res) {
-  res.status(200);
-  res.send('hello express');
-}
+// router.get('/categories', )
+
+// router.get('/categories/:categoryName', )
+
+router.post('/newReport', saveNewReport);
+
+router.get('/newReport', sendUnconfirmedReports);
 
 module.exports = router;
