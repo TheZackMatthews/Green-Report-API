@@ -3,11 +3,12 @@
 //const express = require('express');
 const router = require('express').Router();
 const { sendUnconfirmedReports, saveNewReport } = require('./controllers/newReport');
+const { getCategories } = require('./controllers/categories');
 
 // Verify if the user has admin permissions
 // router.post('/authorise', )
 
-// router.get('/categories', )
+router.get('/categories', getCategories);
 
 // router.get('/categories/:categoryName', )
 

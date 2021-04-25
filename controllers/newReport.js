@@ -1,3 +1,4 @@
+'use strict';
 const newReport = require('../models/newReport');
 
 async function sendUnconfirmedReports(req, res) {
@@ -7,6 +8,7 @@ async function sendUnconfirmedReports(req, res) {
     res.status(200).json(allReports);
   } catch (err) {
     console.log('SendUnconfirmedReports errored:', err)
+    res.sendStatus(400);
   }
 }
 
