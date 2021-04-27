@@ -23,7 +23,7 @@ async function addNewSuper(req, res) {
       email: email
     });
   });
-  res.json(201);
+  res.sendStatus(201);
 }
 
 module.exports = { isSuperUser, addNewSuper };

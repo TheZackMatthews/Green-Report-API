@@ -1,4 +1,5 @@
 'use strict';
+const confirmedReport = require('../models/confirmedReport');
 
 async function getCategories(req, res) {
   res.status(200).json(
@@ -25,4 +26,30 @@ async function getCategories(req, res) {
   );
 }
 
-module.exports = { getCategories };
+async function getSingleCategory(req, res) {
+  const categoryName = req.params.categoryName.replace(/-/g, ' ');
+  console.log(categoryName);
+  // Make a findAll call where productCategory = categoryName
+  try {
+    await confirmedReport.findAll({
+      where: {
+        productCategory:categoryName
+      }
+    })
+    .then(results => {
+      console.log(results)
+      res.status(200).json(results);
+    });
+
+  } catch (err) {
+    console.log(err)
+    res.sendStatus(500);
+  }
+
+  res.sendStatus(200);
+}
+
+module.exports = {
+  getCategories,
+  getSingleCategory
+};

@@ -2,6 +2,7 @@
 const newReport = require('../models/newReport');
 const superList = require('../models/adminStatus');
 const confirmedReport = require('../models/confirmedReport');
+
 async function sendUnconfirmedReports(req, res) {
   try {
     const allReports = await newReport.findAll();
