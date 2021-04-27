@@ -6,7 +6,7 @@ const newReport = sequelize.define('newReport', {
   // Model attributes are defined here
   productName: {
     type: DataTypes.STRING(20),
-    allowNull: false
+    allowNull: true
   },
   productCategory: {
     type: DataTypes.STRING(20),

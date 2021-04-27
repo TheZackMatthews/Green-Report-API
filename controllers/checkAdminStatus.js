@@ -2,7 +2,6 @@
 const superList = require('../models/adminStatus');
 
 async function isSuperUser(req, res) {
-  console.log(req.body.emailAddress);
   try {
     const foundUser = await superList.findOne({
       where: {

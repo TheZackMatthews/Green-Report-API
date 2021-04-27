@@ -2,7 +2,12 @@
 'use strict';
 //const express = require('express');
 const router = require('express').Router();
-const { sendUnconfirmedReports, saveNewReport, deleteNewReport } = require('./controllers/unverifiedReports');
+const {
+  sendUnconfirmedReports,
+  saveNewReport,
+  deleteNewReport,
+  approveNewReport
+} = require('./controllers/unverifiedReports');
 const { getCategories } = require('./controllers/categories');
 const { isSuperUser } = require('./controllers/checkAdminStatus');
 
@@ -18,5 +23,7 @@ router.post('/newReport', saveNewReport);
 router.get('/newReport', sendUnconfirmedReports);
 
 router.post('/deleteReport', deleteNewReport);
+
+router.post('/approveReport', approveNewReport);
 
 module.exports = router;
