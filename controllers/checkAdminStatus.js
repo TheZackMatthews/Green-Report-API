@@ -10,10 +10,10 @@ async function isSuperUser(req, res) {
       }
     });
     if (foundUser) res.status(200).json('true');
-    else res.status(200).json('false');
+    else res.status(206).json('false');
   } catch (err) {
-    console.log('SendUnconfirmedReports errored:', err)
-    res.status(400).json('false');
+    console.log('SendUnconfirmedReports errored:', err);
+    res.status(500).json('false');
   }
 }
 
