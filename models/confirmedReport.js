@@ -5,7 +5,7 @@ const DataTypes = Sequelize.DataTypes;
 const confirmedReport = sequelize.define('confirmedReport', {
   // Model attributes are defined here
   productName: {
-    type: DataTypes.STRING(20),
+    type: DataTypes.STRING(40),
     allowNull: true
   },
   productCategory: {
