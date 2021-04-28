@@ -36,17 +36,12 @@ async function getSingleCategory(req, res) {
         productCategory:categoryName
       }
     })
-    .then(results => {
-      console.log(results)
-      res.status(200).json(results);
-    });
+    .then(results => { res.status(200).json(results) });
 
   } catch (err) {
     console.log(err)
     res.sendStatus(500);
   }
-
-  res.sendStatus(200);
 }
 
 module.exports = {

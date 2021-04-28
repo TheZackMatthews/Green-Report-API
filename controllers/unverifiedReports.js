@@ -75,13 +75,6 @@ async function approveNewReport(req, res) {
         id: req.body.id
       }
     })
-    console.log(reportToMigrate, '!!!!!')
-    await newReport.destroy({
-      where: {
-        id: req.body.id
-      },
-      force: true
-    });
     confirmedReport.sync().then(() => {
       return confirmedReport.create({
         productName: reportToMigrate.productName,
@@ -90,6 +83,11 @@ async function approveNewReport(req, res) {
         reasonForFlagging: reportToMigrate.reasonForFlagging,
         contributedBy: reportToMigrate.contributedBy
       });
+    });
+    await newReport.destroy({
+      where: {
+        id: req.body.id
+      }
     });
     res.sendStatus(201);
   } catch (err) {
