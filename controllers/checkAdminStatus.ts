@@ -1,8 +1,7 @@
-"use strict";
-const superList = require("../models/adminStatus");
+import { Request, Response } from "express";
+import superList from "../models/";
 
-async function isSuperUser(req, res) {
-  console.log("isSuperUser");
+async function isSuperUser(req: Request, res: Response): void {
   try {
     const foundUser = await superList.findOne({
       where: {
@@ -17,8 +16,7 @@ async function isSuperUser(req, res) {
   }
 }
 
-async function addNewSuper(req, res) {
-  console.log("addNewSuper");
+async function addNewSuper(req: Request, res: Response): void {
   const email = req.body.emailAddress;
   superList.sync().then(() => {
     return superList.create({
@@ -28,4 +26,4 @@ async function addNewSuper(req, res) {
   res.sendStatus(201);
 }
 
-module.exports = { isSuperUser, addNewSuper };
+export { isSuperUser, addNewSuper };

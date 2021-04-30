@@ -20,4 +20,4 @@ sequelize
   })
   .catch((err) => console.log("Error connecting to db: " + err));
 
-module.exports = sequelize;
+export sequelize;

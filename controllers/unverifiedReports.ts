@@ -1,10 +1,9 @@
-"use strict";
-const newReport = require("../models/newReport");
-const superList = require("../models/adminStatus");
-const confirmedReport = require("../models/confirmedReport");
+import { Request, Response } from "express";
+import newReport from "../models";
+import superList from "../models/adminStatus";
+import confirmedReport from "../models/confirmedReport";
 
-async function sendUnconfirmedReports(req, res) {
-  console.log("sendUnconfirmedReports");
+async function sendUnconfirmedReports(req: Request, res: Response): void {
   try {
     const allReports = await newReport.findAll();
     res.status(200).json(allReports);
@@ -14,10 +13,8 @@ async function sendUnconfirmedReports(req, res) {
   }
 }
 
-async function saveNewReport(req, res) {
-  console.log("saveNewReport");
+async function saveNewReport(req: Request, res: Response): void {
   const reportFromClient = req.body;
-  console.log("  reportFromClient", req.body);
   newReport.sync().then(() => {
     return newReport.create({
       productName: reportFromClient.productName,
@@ -30,8 +27,7 @@ async function saveNewReport(req, res) {
   res.sendStatus(201);
 }
 
-async function deleteNewReport(req, res) {
-  console.log("deleteNewReport");
+async function deleteNewReport(req: Request, res: Response): void {
   // Verify the user that made the request has sufficient permissions
   try {
     const foundUser = await superList.findOne({
@@ -59,8 +55,8 @@ async function deleteNewReport(req, res) {
   }
 }
 
-async function approveNewReport(req, res) {
-  console.log("approveNewReport");
+async function approveNewReport(req: Request, res: Response): void {
+  console.log("approveNewReport", req, res);
   // Verify the user that made the request has sufficient permissions
   try {
     const foundUser = await superList.findOne({
@@ -101,7 +97,7 @@ async function approveNewReport(req, res) {
   }
 }
 
-module.exports = {
+export {
   sendUnconfirmedReports,
   saveNewReport,
   deleteNewReport,

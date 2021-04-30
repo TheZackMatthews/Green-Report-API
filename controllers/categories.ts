@@ -1,7 +1,7 @@
-"use strict";
-const confirmedReport = require("../models/confirmedReport");
+import { Request, Response } from "express";
+import confirmedReport from "../models/";
 
-async function getCategories(req, res) {
+async function getCategories(req: Request, res: Response): void {
   res.status(200).json([
     {
       categoryName: "Beauty Product",
@@ -31,7 +31,7 @@ async function getCategories(req, res) {
   ]);
 }
 
-async function getSingleCategory(req, res) {
+async function getSingleCategory(req: Request, res: Response): void {
   const categoryName = req.params.categoryName.replace(/-/g, " ");
   console.log(categoryName);
   // Make a findAll call where productCategory = categoryName
@@ -51,7 +51,4 @@ async function getSingleCategory(req, res) {
   }
 }
 
-module.exports = {
-  getCategories,
-  getSingleCategory,
-};
+export { getCategories, getSingleCategory };

@@ -1,18 +1,18 @@
-"use strict";
-const confirmedReport = require("../models/confirmedReport");
+import { Request, Response } from "express";
+import confirmedReport from "../models";
 
-async function searchReports(req, res) {
-  console.log("searchReports");
+async function searchReports(req: Request, res: Response): void {
   try {
     const allReports = await confirmedReport.findAll();
     const key = req.body.key.toLowerCase();
+
+    // type this?
     const matchingReports = allReports.filter((report) => {
       return (
         report.productName.toLowerCase().includes(key) ||
         report.productCompany.toString().toLowerCase().includes(key)
       );
     });
-    console.log(key, matchingReports);
     res.status(200).json(matchingReports);
   } catch (err) {
     console.log("SearchReports errored:", err);
@@ -20,5 +20,5 @@ async function searchReports(req, res) {
   }
 }
 
-module.exports = { searchReports };
+export { searchReports };
 
