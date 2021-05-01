@@ -11,6 +11,8 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 app.use(routes);
-app.listen(PORT, host, () => {
+const server = app.listen(PORT, host, () => {
   console.log(`Server listening on http://${host}:${PORT}`);
 });
+
+export { server };

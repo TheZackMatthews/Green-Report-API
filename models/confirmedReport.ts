@@ -32,4 +32,4 @@ const confirmedReport = sequelize.define(
   }
 );
 
-export confirmedReport
+export { confirmedReport };

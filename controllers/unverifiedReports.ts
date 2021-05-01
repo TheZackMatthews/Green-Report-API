@@ -1,9 +1,12 @@
 import { Request, Response } from "express";
-import newReport from "../models";
-import superList from "../models/adminStatus";
-import confirmedReport from "../models/confirmedReport";
+import { newReport } from "../models/newReport";
+import { superList } from "../models/adminStatus";
+import { confirmedReport } from "../models/confirmedReport";
 
-async function sendUnconfirmedReports(req: Request, res: Response): void {
+async function sendUnconfirmedReports(
+  req: Request,
+  res: Response
+): Promise<void> {
   try {
     const allReports = await newReport.findAll();
     res.status(200).json(allReports);
@@ -13,7 +16,7 @@ async function sendUnconfirmedReports(req: Request, res: Response): void {
   }
 }
 
-async function saveNewReport(req: Request, res: Response): void {
+async function saveNewReport(req: Request, res: Response): Promise<void> {
   const reportFromClient = req.body;
   newReport.sync().then(() => {
     return newReport.create({
@@ -27,7 +30,7 @@ async function saveNewReport(req: Request, res: Response): void {
   res.sendStatus(201);
 }
 
-async function deleteNewReport(req: Request, res: Response): void {
+async function deleteNewReport(req: Request, res: Response): Promise<void> {
   // Verify the user that made the request has sufficient permissions
   try {
     const foundUser = await superList.findOne({
@@ -55,7 +58,7 @@ async function deleteNewReport(req: Request, res: Response): void {
   }
 }
 
-async function approveNewReport(req: Request, res: Response): void {
+async function approveNewReport(req: Request, res: Response): Promise<void> {
   console.log("approveNewReport", req, res);
   // Verify the user that made the request has sufficient permissions
   try {

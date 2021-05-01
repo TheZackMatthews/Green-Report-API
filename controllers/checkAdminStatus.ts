@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import superList from "../models/";
+import { superList } from "../models/adminStatus";
 
-async function isSuperUser(req: Request, res: Response): void {
+async function isSuperUser(req: Request, res: Response): Promise<void> {
   try {
     const foundUser = await superList.findOne({
       where: {
@@ -16,7 +16,7 @@ async function isSuperUser(req: Request, res: Response): void {
   }
 }
 
-async function addNewSuper(req: Request, res: Response): void {
+async function addNewSuper(req: Request, res: Response): Promise<void> {
   const email = req.body.emailAddress;
   superList.sync().then(() => {
     return superList.create({

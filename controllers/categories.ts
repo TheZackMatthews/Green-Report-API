@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import confirmedReport from "../models/";
+import { confirmedReport } from "../models/confirmedReport";
 
-async function getCategories(req: Request, res: Response): void {
+async function getCategories(req: Request, res: Response): Promise<void> {
   res.status(200).json([
     {
       categoryName: "Beauty Product",
@@ -31,7 +31,7 @@ async function getCategories(req: Request, res: Response): void {
   ]);
 }
 
-async function getSingleCategory(req: Request, res: Response): void {
+async function getSingleCategory(req: Request, res: Response): Promise<void> {
   const categoryName = req.params.categoryName.replace(/-/g, " ");
   console.log(categoryName);
   // Make a findAll call where productCategory = categoryName
@@ -42,7 +42,7 @@ async function getSingleCategory(req: Request, res: Response): void {
           productCategory: categoryName,
         },
       })
-      .then((results) => {
+      .then((results: any) => {
         res.status(200).json(results);
       });
   } catch (err) {
