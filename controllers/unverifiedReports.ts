@@ -86,11 +86,11 @@ async function approveNewReport(req: Request, res: Response): Promise<void> {
     });
     confirmedReport.sync().then(() => {
       return confirmedReport.create({
-        productName: reportToMigrate.productName,
-        productCompany: reportToMigrate.productCompany,
-        productCategory: reportToMigrate.productCategory,
-        reasonForFlagging: reportToMigrate.reasonForFlagging,
-        contributedBy: reportToMigrate.contributedBy,
+        productName: reportToMigrate!.productName,
+        productCompany: reportToMigrate!.productCompany,
+        productCategory: reportToMigrate!.productCategory,
+        reasonForFlagging: reportToMigrate!.reasonForFlagging,
+        contributedBy: reportToMigrate!.contributedBy,
       });
     });
     res.sendStatus(201);

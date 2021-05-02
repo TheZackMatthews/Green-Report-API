@@ -1,8 +1,12 @@
-import sequelize from "./index";
-import { Sequelize } from "sequelize";
-const DataTypes = Sequelize.DataTypes;
+import { sequelize } from "./index";
+import { Sequelize, Model } from "sequelize";
+import { DataTypes } from "sequelize";
 
-const superList = sequelize.define(
+interface SuperListInstance extends Model {
+  email: string;
+}
+
+const superList = sequelize.define<SuperListInstance>(
   "addNewSuper",
   {
     // Model attributes are defined here

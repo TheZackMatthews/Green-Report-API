@@ -1,8 +1,9 @@
-import sequelize from "./index.js";
+import { sequelize } from "./index";
 import { Sequelize } from "sequelize";
-const DataTypes = Sequelize.DataTypes;
+import { ReportInstance } from "./interfaces";
+import { DataTypes } from "sequelize";
 
-const newReport = sequelize.define(
+const newReport = sequelize.define<ReportInstance>(
   "newReport",
   {
     // Model attributes are defined here
