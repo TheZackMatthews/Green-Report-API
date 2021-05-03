@@ -34,17 +34,23 @@ async function saveNewReport(req: Request, res: Response): Promise<void> {
 async function deleteNewReport(req: Request, res: Response): Promise<void> {
   // Verify the user that made the request has sufficient permissions
   try {
+    console.log(await superList.findAll());
     const foundUser = await superList.findOne({
       where: {
         email: req.body.emailAddress,
       },
     });
-    if (!foundUser) res.sendStatus(401);
+    if (!foundUser) {
+      res.sendStatus(401);
+      // execution needs to end here
+      return;
+    }
   } catch (err) {
     console.log("DeleteNewReport errored during authentication:", err);
     res.sendStatus(500);
   }
   // Perform the delete operation
+  // gives ERR_HTTP_HEADERS_SENT
   try {
     await newReport.destroy({
       where: {
