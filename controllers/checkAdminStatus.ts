@@ -26,4 +26,15 @@ async function addNewSuper(req: Request, res: Response): Promise<void> {
   res.sendStatus(201);
 }
 
-export { isSuperUser, addNewSuper };
+async function deleteSuper(req: Request, res: Response): Promise<void> {
+  const email = req.body.emailAddress;
+  superList.sync().then(() => {
+    return superList.destroy({
+      where: {
+        email: email,
+      },
+    });
+  });
+  res.sendStatus(201);
+}
+export { isSuperUser, addNewSuper, deleteSuper };

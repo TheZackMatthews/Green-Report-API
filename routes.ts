@@ -9,7 +9,11 @@ import {
 
 import { getCategories, getSingleCategory } from "./controllers/categories";
 
-import { isSuperUser } from "./controllers/checkAdminStatus";
+import {
+  isSuperUser,
+  addNewSuper,
+  deleteSuper,
+} from "./controllers/checkAdminStatus";
 
 import { searchReports } from "./controllers/searchReports";
 
@@ -30,5 +34,7 @@ router.post("/deleteReport", deleteNewReport);
 router.post("/approveReport", approveNewReport);
 
 router.post("/search", searchReports);
+router.post("/addNewSuper", addNewSuper);
+router.post("/deleteSuper", deleteSuper);
 
 export { router };
