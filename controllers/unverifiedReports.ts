@@ -26,6 +26,7 @@ async function saveNewReport(req: Request, res: Response): Promise<void> {
       reasonForFlagging: reportFromClient.reasonForFlagging,
       contributedBy: reportFromClient.contributedBy,
     });
+    //  .then((result) => (res.body.id = result.id));
   });
   res.sendStatus(201);
 }
