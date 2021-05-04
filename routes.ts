@@ -1,21 +1,23 @@
-const router = require("express").Router();
+import express from "express";
 
-const {
+import {
   sendUnconfirmedReports,
   saveNewReport,
   deleteNewReport,
   approveNewReport,
-} = require("./controllers/unverifiedReports");
+} from "./controllers/unverifiedReports";
 
-const {
-  getCategories,
-  getSingleCategory,
-} = require("./controllers/categories");
+import { getCategories, getSingleCategory } from "./controllers/categories";
 
-const { isSuperUser } = require("./controllers/checkAdminStatus");
+import {
+  isSuperUser,
+  addNewSuper,
+  deleteSuper,
+} from "./controllers/checkAdminStatus";
 
-const { searchReports } = require("./controllers/searchReports");
+import { searchReports } from "./controllers/searchReports";
 
+const router = express.Router();
 // Verify if the user has admin permissions
 router.post("/authorise", isSuperUser);
 
@@ -32,5 +34,7 @@ router.post("/deleteReport", deleteNewReport);
 router.post("/approveReport", approveNewReport);
 
 router.post("/search", searchReports);
+router.post("/addNewSuper", addNewSuper);
+router.post("/deleteSuper", deleteSuper);
 
-module.exports = router;
+export { router };

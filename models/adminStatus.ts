@@ -1,15 +1,23 @@
-const sequelize = require('./index.js');
-const { Sequelize } = require('sequelize');
-const DataTypes = Sequelize.DataTypes;
+import { sequelize } from "./index";
+import { Sequelize, Model } from "sequelize";
+import { DataTypes } from "sequelize";
 
-const newReport = sequelize.define('addNewSuper', {
-  // Model attributes are defined here
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false
+interface SuperListInstance extends Model {
+  email: string;
+}
+
+const superList = sequelize.define<SuperListInstance>(
+  "addNewSuper",
+  {
+    // Model attributes are defined here
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  {
+    // Other model options go here
   }
-}, {
-  // Other model options go here
-});
+);
 
-export newReport;
+export { superList };

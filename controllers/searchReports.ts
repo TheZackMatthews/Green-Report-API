@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import confirmedReport from "../models";
+import { confirmedReport } from "../models/confirmedReport";
 
-async function searchReports(req: Request, res: Response): void {
+async function searchReports(req: Request, res: Response): Promise<void> {
   try {
     const allReports = await confirmedReport.findAll();
     const key = req.body.key.toLowerCase();
 
     // type this?
-    const matchingReports = allReports.filter((report) => {
+    const matchingReports = allReports.filter((report: any) => {
       return (
         report.productName.toLowerCase().includes(key) ||
         report.productCompany.toString().toLowerCase().includes(key)
@@ -21,4 +21,3 @@ async function searchReports(req: Request, res: Response): void {
 }
 
 export { searchReports };
-

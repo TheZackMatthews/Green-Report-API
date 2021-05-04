@@ -1,8 +1,8 @@
-import sequelize from "./index.js";
+import { sequelize } from "./index";
 import { Sequelize } from "sequelize";
-const DataTypes = Sequelize.DataTypes;
-
-const confirmedReport = sequelize.define(
+import { ReportInstance } from "./interfaces";
+import { DataTypes } from "sequelize";
+const confirmedReport = sequelize.define<ReportInstance>(
   "confirmedReport",
   {
     // Model attributes are defined here
@@ -32,4 +32,4 @@ const confirmedReport = sequelize.define(
   }
 );
 
-export confirmedReport
+export { confirmedReport };
