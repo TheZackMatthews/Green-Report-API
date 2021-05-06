@@ -7,7 +7,7 @@ import {
   approveNewReport,
 } from "./controllers/unverifiedReports";
 
-import { getCategories, getSingleCategory } from "./controllers/categories";
+//import { getCategories, getSingleCategory } from "./controllers/categories";
 
 import {
   isSuperUser,
