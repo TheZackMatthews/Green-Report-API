@@ -1,5 +1,4 @@
 import { sequelize } from "./index";
-import { Sequelize } from "sequelize";
 import { ReportInstance } from "./interfaces";
 import { DataTypes } from "sequelize";
 

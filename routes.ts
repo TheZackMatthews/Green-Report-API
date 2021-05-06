@@ -21,9 +21,9 @@ const router = express.Router();
 // Verify if the user has admin permissions
 router.post("/authorise", isSuperUser);
 
-router.get("/categories", getCategories);
+//router.get("/categories", getCategories);
 
-router.get("/categories/:categoryName", getSingleCategory);
+//router.get("/categories/:categoryName", getSingleCategory);
 
 router.post("/newReport", saveNewReport);
 

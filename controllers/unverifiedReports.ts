@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { newReport } from "../models/newReport";
 import { superList } from "../models/adminStatus";
 import { confirmedReport } from "../models/confirmedReport";
+import DOMPurify from "dompurify";
 
 async function sendUnconfirmedReports(
   req: Request,
@@ -20,11 +21,11 @@ async function saveNewReport(req: Request, res: Response): Promise<void> {
   const reportFromClient = req.body;
   newReport.sync().then(() => {
     return newReport.create({
-      productName: reportFromClient.productName,
-      productCompany: reportFromClient.productCompany,
-      productCategory: reportFromClient.productCategory,
-      reasonForFlagging: reportFromClient.reasonForFlagging,
-      contributedBy: reportFromClient.contributedBy,
+      productName: DOMPurify.sanitize(reportFromClient.productName),
+      productCompany: DOMPurify.sanitize(reportFromClient.productCompany),
+      productCategory: DOMPurify.sanitize(reportFromClient.productCategory),
+      reasonForFlagging: DOMPurify.sanitize(reportFromClient.reasonForFlagging),
+      contributedBy: DOMPurify.sanitize(reportFromClient.contributedBy),
     });
     //  .then((result) => (res.body.id = result.id));
   });
